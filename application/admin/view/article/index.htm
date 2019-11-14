@@ -1,0 +1,77 @@
+
+{extend name='admin@public/base'/}
+
+{block name='title'}张少的CMS{/block}
+
+{block name='link'}{/block}
+
+
+
+{block name='topbar'}     
+    <li><a href="#">系统</a> </li>
+    <li><a href="#">文章管理</a> </li>
+{/block}  
+
+ {block name='content'}
+<button type="button" tooltip="添加文章" class="btn btn-sm btn-azure btn-addon" onClick="javascript:window.location.href = '__ROOT__/admin/art/create'"> <i class="fa fa-plus"></i> Add
+</button>
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+        <div class="widget">
+            <div class="widget-body">
+                <div class="flip-scroll">
+                    <table class="table table-bordered table-hover">
+                        <thead class="">
+                            <tr>
+                                <th class="text-center">ID</th>
+                                <th class="text-center">文章栏目</th>
+                                <th class="text-center">标题</th>
+                                <th class="text-center">关键词</th>
+                                  <th class="text-center">作者</th>
+                                <th class="text-center">描述</th>
+                                 <th class="text-center">图片</th>
+                                  <th class="text-center">内容</th>
+                                <th class="text-center">点击数</th>
+                                <th class="text-center">点赞数</th>
+                                <th class="text-center">创建时间</th>
+                                <th class="text-center">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {foreach $art as $item}
+                            <tr>
+                                <td align="center">{$item.id}</td>
+                                <td align="center">{$item->cate['cate_name']}</td>
+                                <td align="center"><?php echo mb_substr($item['art_title'],0,8); ?> {if mb_strlen($item['art_title'],'utf8') > 8}...{/if}</td>
+                                 <td align="center">{$item.art_keywords}</td>
+                                <td align="center">{$item.art_author}</td>
+                                 <td align="center">{$item.art_desc}</td>
+                                <td align="center"><img src="{$item.art_pic}" style="height: 50px"></td>
+                                 <td align="center">{$item.art_content}</td>
+                                <td align="center">{$item.art_click}</td>
+                                 <td align="center">{$item.art_praise}</td>
+                                <td align="center">{$item.create_time}</td>
+                                <td align="center">
+                                    <a href="__ROOT__/admin/art/{$item.id}/edit" class="btn btn-primary btn-sm shiny">
+                                        <i class="fa fa-edit"></i> 编辑
+                                    </a>
+                                    <a href="#" onClick="warning('确实要删除吗', '#')" class="btn btn-danger btn-sm shiny">
+                                        <i class="fa fa-trash-o"></i> 删除
+                                    </a>
+                                </td>
+                            </tr>
+                              {/foreach}
+                                                    </tbody>
+                    </table>
+                    {$art|raw}
+                </div>
+                <div>
+                                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block} 
+
+
+ {block name='js'}{/block} 

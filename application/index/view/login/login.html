@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>登录</title>
+</head>
+<body>
+
+	<form action="{:url('login')}" method="post">
+		<p>用户名：<input type="text" name="username"></p>
+		<p>密码：<input type="password" name="password"></p>
+		
+		<input type="submit" name="submit" value="登录">
+	</form>
+	<p>{if !session('?user')}<?php echo session('error'); ?>{/if}</p>
+
+
+		<!-- 配置文件 -->
+	<script type="text/javascript" src="__ROOT__/static/ue/ueditor.config.js"></script>
+	<!-- 编辑器源码文件 -->
+	<script type="text/javascript" src="__ROOT__/static/ue/ueditor.all.js"></script>
+	<!-- 实例化编辑器 -->
+	<script type="text/javascript">
+	   	var ue = UE.getEditor('content',{
+		initialFrameWidth:700,
+		initialFrameHeight:200,
+	});
+	</script>
+
+</body>
+</html>
